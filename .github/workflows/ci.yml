@@ -38,7 +38,14 @@ jobs:
       
     - name: Build with Gradle Wrapper
       run: ./gradlew build
-
+      
+    - name: build and push Docker image
+      uses: docker/build-push-action@v7
+      with:
+        image: 0xray1e/my-app
+        registry: docker.io
+        username: ${{ vars.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
     # NOTE: The Gradle Wrapper is the default and recommended way to run Gradle (https://docs.gradle.org/current/userguide/gradle_wrapper.html).
     # If your project does not have the Gradle Wrapper configured, you can use the following configuration to run Gradle with a specified version.
     #
